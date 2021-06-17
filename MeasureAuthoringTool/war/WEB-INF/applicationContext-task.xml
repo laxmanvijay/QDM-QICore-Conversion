@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-4.3.xsd"
+>
+
+	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor">
+    </bean>
+
+    <bean id="unlockUserTask" class="mat.server.service.impl.UnlockUserTask">
+        <constructor-arg ref="taskExecutor" />
+    </bean>
+   
+    <task:scheduler id="scheduler" pool-size="1"/>
+	<task:scheduled-tasks scheduler="scheduler">
+		<!--  every hour -->
+        <task:scheduled ref="unlockUserTask" method="unlockUsers" fixed-delay="216000000"/>
+    </task:scheduled-tasks>
+
+
+<!-- Bean Details for Email Scheduler Start -->
+
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="location" value="classpath:MAT.properties"/>
+	</bean>
+	
+	<bean id="userLastLoginTemplateMessage" class="org.springframework.mail.SimpleMailMessage">
+      <property name="from" value="${mat.from.emailAddress}"/>
+    </bean>
+
+
+</beans>

@@ -154,6 +154,7 @@
         <module>mat-rest-commons</module>
         <module>mapping-services</module>
         <module>cql-elm-translation</module>
+        <module>MeasureAuthoringTool</module>
     </modules>
 
     <repositories>
