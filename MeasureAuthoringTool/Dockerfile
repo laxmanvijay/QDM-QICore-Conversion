@@ -12,11 +12,8 @@ RUN curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/cur
     && unzip newrelic-java.zip \
     && sed -i "/common: &default_settings/a \ \ host: gov-collector.newrelic.com" newrelic/newrelic.yml
 
-RUN mkdir ~/.ssh/
-RUN touch ~/.ssh/authorized_keys
 RUN apt-get update
 RUN apt-get install -y vim
-RUN apt-get install -y openssh-server
 
 COPY target/MeasureAuthoringTool.war /usr/local/tomcat/webapps/${WAR_PATH}
 COPY deployment/manager /usr/local/tomcat/webapps/manager
