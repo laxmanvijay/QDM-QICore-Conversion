@@ -116,3 +116,8 @@ services:
       - 3307:3306
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+    volumes:
+      - mysql-data-volume:/var/lib/mysql
+
+volumes:
+  mysql-data-volume:
