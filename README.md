@@ -4,7 +4,11 @@ MeasureAuthoringTool has been included in this repo for convenient deployment. h
 
 Everything needed to run MAT is included (including the default env configs, db and dump).
 
+Prerequisites:
 
+* Java 11 https://adoptopenjdk.net/
+* Maven v2.81 https://maven.apache.org/download.cgi
+* Docker
 
 Steps to deploy:
 
